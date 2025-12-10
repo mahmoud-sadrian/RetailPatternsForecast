@@ -1,0 +1,43 @@
+\section{Association Rule Mining (Manual Implementation)}
+
+\subsection{Support, Confidence, and Lift}
+
+For itemset \( X \):
+\[
+\text{support}(X)
+= \frac{\text{transactions containing } X}{N}.
+\]
+
+For rule \( X \rightarrow Y \):
+\[
+\text{confidence}(X \rightarrow Y)
+= \frac{\text{support}(X \cup Y)}{\text{support}(X)}.
+\]
+
+\[
+\text{lift}(X \rightarrow Y)
+= \frac{\text{confidence}(X \rightarrow Y)}{\text{support}(Y)}.
+\]
+
+\subsection{Frequent Itemsets}
+
+Only 1-item and 2-item itemsets were computed manually using NumPy Boolean operations 
+for efficiency. The top frequent itemsets display strong co-occurrence patterns 
+consistent with high-volume retail items.
+
+\subsection{Extracted Rules}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{rules_scatter}
+	\caption{Support vs. confidence of all rules, colored by lift.}
+\end{figure}
+
+Example rules include:
+
+\begin{itemize}
+	\item \{A\} $\rightarrow$ \{B\} with high confidence,
+	\item \{C\} $\rightarrow$ \{D\} with moderate lift.
+\end{itemize}
+
+These rules reveal meaningful relationships between frequently co-purchased items.

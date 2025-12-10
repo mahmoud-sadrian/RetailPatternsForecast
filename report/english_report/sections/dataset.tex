@@ -1,0 +1,22 @@
+\section{Dataset Description}
+
+The dataset contains retail transactions, where each row represents a purchased item 
+within an invoice. The primary attributes include:
+
+\begin{itemize}
+	\item \textbf{InvoiceNo:} Unique invoice identifier,
+	\item \textbf{Description:} Product name,
+	\item \textbf{Quantity:} Number of purchased units,
+	\item \textbf{UnitPrice:} Price per unit,
+	\item \textbf{InvoiceDate:} Timestamp,
+	\item \textbf{CustomerID:} Customer identifier,
+	\item \textbf{Country:} Country of sale.
+\end{itemize}
+
+An additional attribute \textbf{TotalAmount} is computed:
+\[
+\text{TotalAmount} = \text{Quantity} \times \text{UnitPrice}.
+\]
+
+This processed dataset is then used for both association rule mining 
+(transaction-level analysis) and revenue forecasting (time series aggregation).

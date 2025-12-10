@@ -1,0 +1,79 @@
+\documentclass[12pt,a4paper]{article}
+
+% ---------- Packages ----------
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{amsmath, amssymb}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{setspace}
+\usepackage{lipsum}
+
+% Correct path to graphical file configuration (same folder)
+\input{includegraphical_file_path}
+
+\onehalfspacing  % line spacing 1.5
+
+% ---------- Title Info ----------
+\title{Association Rule Mining and Time Series Forecasting\\
+	\large Data Mining -- Homework 1}
+\author{
+	Mahmoud Sadrian \\ Student ID: 40435336 \\
+	\href{https://github.com/mahmoud-sadrian/RetailPatternsForecast}{GitHub Repository}
+}
+\date{\today}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{abstract}
+		This report presents a complete data mining study on a real-world retail transaction dataset, 
+		focusing on manual implementation of association rule mining and time series forecasting. 
+		The workflow includes extensive data preprocessing, transformation of transactions into a binary basket matrix,
+		and implementation of Apriori frequent itemset generation without external libraries. 
+		Frequent itemsets, as well as support, confidence, and lift, were computed manually for all one-item 
+		and two-item combinations.
+		
+		Exploratory data analysis (EDA) was conducted using histograms, bar charts, and basket-level statistics
+		to better understand product frequencies and co-occurrence patterns. A set of meaningful association rules 
+		was extracted and analyzed, with visualizations illustrating support--confidence--lift relationships.
+		
+		In the second part of the project, a daily revenue time series was constructed and analyzed. A Simple Exponential 
+		Smoothing (SES) forecasting model was manually implemented to predict future revenue, and its performance 
+		was compared to a naive baseline forecast. The SES model demonstrated superior performance based on RMSE, MAE, 
+		and MAPE metrics.
+		
+		All computations, algorithms, and visualizations were implemented from scratch, ensuring direct understanding 
+		of the mathematical and algorithmic foundations of association rule mining and time series forecasting.
+	\end{abstract}
+	
+	% ---------- Sections as modules ----------
+	\input{sections/introduction}
+	\input{sections/dataset}
+	\input{sections/preprocessing}
+	\input{sections/eda}
+	\input{sections/association_rules}
+	\input{sections/time_series}
+	\input{sections/conclusion}
+	
+	% ---------- References ----------
+	\begin{thebibliography}{9}
+		
+		\bibitem{apriori}
+		Agrawal, R., Imieliński, T., \& Swami, A. (1993). 
+		Mining association rules between sets of items in large databases.
+		
+		\bibitem{forecasting}
+		Hyndman, R. J., \& Athanasopoulos, G. 
+		\textit{Forecasting: Principles and Practice}.
+		
+		\bibitem{dataset}
+		Retail Transaction Dataset (Course Provided).
+		
+	\end{thebibliography}
+	
+\end{document}

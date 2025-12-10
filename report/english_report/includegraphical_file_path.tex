@@ -1,0 +1,14 @@
+% ============================================
+% Graphical Path Configuration for LaTeX
+% ============================================
+
+% Add the images folder relative to the report.tex file
+% report.tex is in: report/english_report/
+% images folder is in: report/images/
+\graphicspath{{../images/}}
+
+% Allow LaTeX to search for common image formats
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+
+% Optional: reduce warnings about PDF bounding boxes
+\setkeys{Gin}{keepaspectratio=true}

@@ -1,0 +1,34 @@
+\section{Time Series Forecasting (Manual SES)}
+
+A Simple Exponential Smoothing model was implemented manually. The recursion is:
+\[
+s_t = \alpha\, y_t + (1-\alpha)\, s_{t-1},
+\]
+and the forecast is:
+\[
+\hat{y}_{t+h} = s_t.
+\]
+
+\subsection{Test Performance}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{ses_vs_actual}
+	\caption{Actual vs SES forecast on test set.}
+\end{figure}
+
+\subsection{RMSE Comparison}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.75\textwidth]{rmse_comparison}
+	\caption{RMSE comparison between naive and SES forecasts.}
+\end{figure}
+
+\subsection{14-Day Forecast}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{ses_14day_forecast}
+	\caption{14-day SES revenue forecast.}
+\end{figure}

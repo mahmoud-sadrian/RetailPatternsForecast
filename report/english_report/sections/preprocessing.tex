@@ -1,0 +1,38 @@
+\section{Preprocessing}
+
+Preprocessing consists of three major steps: cleaning, basket transformation, 
+and time series construction.
+
+\subsection{Data Cleaning}
+
+Invalid rows were removed based on:
+\begin{itemize}
+	\item missing \textbf{Description},
+	\item missing \textbf{CustomerID},
+	\item nonpositive \textbf{Quantity} or \textbf{UnitPrice}.
+\end{itemize}
+
+The cleaned dataset ensures meaningful transactions and valid revenue values.
+
+\subsection{Basket Matrix Construction}
+
+A binary matrix \( B \) was created:
+\[
+B_{ij} =
+\begin{cases}
+	1 & \text{if invoice } i \text{ contains product } j,\\
+	0 & \text{otherwise}.
+\end{cases}
+\]
+
+To maintain computational feasibility in the manual Apriori implementation, 
+only the top 50 most frequent products were retained.
+
+\subsection{Daily Revenue Series}
+
+Revenue for each day was defined as:
+\[
+R(t) = \sum_{i \in \text{transactions on } t} \text{TotalAmount}_i.
+\]
+
+This series forms the basis for SES forecasting.
