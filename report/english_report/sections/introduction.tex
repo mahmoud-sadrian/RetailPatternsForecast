@@ -1,15 +1,18 @@
 \section{Introduction}
 
-Retail transaction datasets provide an ideal foundation for extracting actionable 
-insights about customer behavior. Two of the most widely used techniques in this domain 
-are association rule mining---used to discover co-occurrence patterns among products---and 
-time series forecasting, which supports revenue prediction and inventory planning.
+Retail transaction datasets offer valuable opportunities for analyzing customer behavior, 
+product co-occurrence patterns, and temporal sales trends. This project focuses on the 
+manual implementation of two core data mining tasks: association rule mining and 
+time series forecasting. By avoiding external machine learning libraries and relying only 
+on fundamental vectorized operations, the workflow provides complete transparency in how 
+frequent itemsets, support, confidence, lift, and forecasting metrics are computed.
 
-This project focuses on implementing both tasks \textbf{from scratch}. 
-We manually construct the basket matrix, compute support, confidence, and lift without 
-external packages, and implement a simplified Apriori algorithm for one- and two-item 
-frequent itemsets. Furthermore, we develop a manual Simple Exponential Smoothing (SES) 
-model to forecast daily revenue.
+The analysis is conducted using the publicly available 
+\href{https://archive.ics.uci.edu/dataset/352/online+retail}{Online Retail dataset}
+from the UCI Machine Learning Repository. This dataset provides one year of detailed 
+invoice-level transactions from a UK-based online store and is widely used in 
+market basket analysis and forecasting research.
 
-This dual analysis provides a complete view of both cross-sectional patterns 
-(product co-occurrence) and temporal behavior (revenue evolution).
+Its structure enables both cross-sectional analysis (frequent product combinations) 
+and temporal analysis (daily revenue patterns), forming a complete framework for 
+retail analytics.

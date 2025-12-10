@@ -1,46 +1,76 @@
 \section{Exploratory Data Analysis}
 
-\subsection{Distributions}
-Figures~\ref{fig:qty} and~\ref{fig:price} display the distributions of 
-quantities and unit prices.
+This section provides a descriptive overview of the dataset through several visualizations, 
+highlighting key statistical properties of product quantities, unit prices, country-level revenue 
+distribution, and product popularity. These patterns help reveal inherent characteristics of the 
+retail environment and guide subsequent association rule mining.
+
+% ---------------- Quantity Distribution ----------------
+\subsection{Quantity Distribution}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{quantity_distribution}
+	\includegraphics[width=0.85\textwidth]{quantity_distribution}
 	\caption{Distribution of purchased quantities.}
-	\label{fig:qty}
 \end{figure}
+
+The distribution of quantities is extremely right-skewed. Almost all transactions contain 
+very small purchase quantities—typically between 1 and 3 units—resulting in a tall, narrow bar 
+at the left end of the distribution. A very small number of transactions include exceptionally 
+large quantities (up to tens of thousands of units), forming extreme outliers that are barely 
+visible in the histogram due to the overwhelming mass at low values.
+
+Such a distribution is characteristic of retail datasets, where customers primarily buy 
+individual items or small bundles, while very large purchases may represent bulk orders, 
+restocking events, or data-entry anomalies.
+
+% ---------------- UnitPrice Distribution ----------------
+\subsection{UnitPrice Distribution}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{unitprice_distribution}
-	\caption{Distribution of unit prices.}
-	\label{fig:price}
+	\includegraphics[width=0.85\textwidth]{unitprice_distribution}
+	\caption{Distribution of unit prices (log scale).}
 \end{figure}
 
-\subsection{Top Products}
+Unit prices span several orders of magnitude, necessitating the use of a logarithmic x-axis. 
+Most products fall within a relatively low price range (roughly 0.1 to 10 units), while a few 
+items exhibit significantly higher prices. These rare but high-value items create a long right tail.
+
+The wide spread in price values indicates the need for proper scaling in downstream analysis, 
+especially when measuring similarity or distance across transactions.
+
+% ---------------- Top 10 Products ----------------
+\subsection{Top 10 Products by Invoice Count}
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{top10_products}
-	\caption{Top 10 most purchased products.}
+	\includegraphics[width=0.95\textwidth]{top10_products}
+	\caption{Most frequently purchased products.}
 \end{figure}
 
+The top-selling products are dominated by inexpensive decorative or gift items. Notably, the item 
+\textit{WHITE HANGING HEART T-LIGHT HOLDER} appears significantly more frequently than all other 
+products, followed by several bags, ornaments, and household accessories.
+
+This strong concentration of sales among a few items illustrates a classic long-tail structure: 
+a small set of popular products accounts for a disproportionately large share of transactions. 
+These products play a central role in the formation of frequent itemsets and association rules.
+
+% ---------------- Revenue by Country ----------------
 \subsection{Revenue by Country}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\textwidth]{revenue_by_country}
-	\caption{Total revenue by country.}
-\end{figure}
-
-\subsection{Daily Revenue}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\textwidth]{daily_revenue}
-	\caption{Daily revenue time series.}
-\end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{daily_revenue_ma7}
-	\caption{7-day moving average.}
+	\includegraphics[width=0.95\textwidth]{revenue_by_country}
+	\caption{Total revenue aggregated by country.}
 \end{figure}
+
+Revenue is overwhelmingly dominated by the United Kingdom, which contributes more than 7 million 
+units of total sales. All other countries contribute only small fractions in comparison, with a 
+steep drop-off visible across the distribution. This imbalance suggests that the dataset is 
+effectively single-country for analytical purposes, as more than 90\% of all activity originates 
+from the UK.
+
+Such extreme skewness does not negatively impact association rule mining but underscores the need 
+for caution when interpreting geographic trends, as the dataset is not globally representative.

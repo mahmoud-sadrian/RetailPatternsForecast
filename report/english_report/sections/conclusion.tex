@@ -1,14 +1,44 @@
 \section{Conclusion}
 
-This project implemented association rule mining and time series forecasting entirely 
-from scratch. The basket transformation and manual Apriori algorithm revealed several 
-frequent itemsets and meaningful product associations. Support, confidence, and lift 
-were computed without external libraries, providing insight into the mathematical 
-structure of rule mining.
+This project provided a comprehensive exploration of both cross-sectional and temporal 
+patterns in a real-world retail transaction dataset. Through meticulous preprocessing, 
+detailed exploratory analysis, and the implementation of core machine learning concepts 
+from first principles, several meaningful insights were uncovered about customer purchasing 
+behavior and revenue dynamics.
 
-The second part of the project developed a fully manual SES model, which outperformed 
-a naive baseline and generated stable revenue forecasts. The combined analysis illustrates 
-both cross-sectional insights (product relationships) and temporal behavior (sales trends).
+The exploratory data analysis revealed strong structural characteristics inherent to retail 
+environments. Product quantities and unit prices exhibited highly skewed distributions, 
+with the majority of purchases involving low-cost items and small quantities. Sales were 
+heavily concentrated among a limited set of popular products, reflecting a pronounced 
+long-tail effect. Likewise, revenue was overwhelmingly dominated by the United Kingdom, 
+highlighting an imbalance in geographic representation that must be considered when drawing 
+business-level conclusions.
 
-Future work may include multi-level itemset mining, FP-growth, Holt–Winters smoothing, 
-and ARIMA models.
+Manual association rule mining offered a deeper understanding of item co-occurrence patterns. 
+By manually computing support, confidence, and lift—restricted to one-item and two-item 
+frequent itemsets for computational tractability—we identified several strong purchasing 
+associations with lift values significantly exceeding what would be expected under 
+independence. The concentration of rules around popular products aligns with the previously 
+observed long-tail distribution and confirms consistent customer behavior in the co-purchasing 
+of specific decorative and household items.
+
+The time series analysis further complemented these findings by revealing the temporal 
+structure of daily revenue. Despite high levels of short-term volatility, the series 
+displayed meaningful long-term trends, such as seasonal increases toward the end of the year. 
+The manually implemented Simple Exponential Smoothing (SES) model demonstrated clear 
+improvements over the naive forecasting approach, achieving lower prediction error and 
+providing a stable estimate of expected revenue. Although SES cannot capture high-frequency 
+oscillations, its simplicity and interpretability make it an effective tool for establishing 
+baseline forecasts in retail environments.
+
+Collectively, these analyses highlight the value of combining basket-level co-occurrence 
+mining with time series forecasting to obtain a holistic understanding of retail behavior. 
+The manual implementation of all core algorithms—Apriori components, rule evaluation metrics, 
+and SES smoothing—reinforced fundamental data mining concepts and ensured transparency in 
+modeling. Future work may extend this analysis by incorporating higher-order itemsets, 
+FP-growth for enhanced scalability, seasonality-aware forecasting models such as Holt-Winters, 
+or advanced deep learning architectures capable of capturing nonlinear demand patterns.
+
+Overall, this project demonstrates how foundational analytical methods, when carefully 
+applied and interpreted, can yield actionable insights into customer behavior, product 
+relationships, and temporal revenue trends within retail data.

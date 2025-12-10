@@ -1,22 +1,31 @@
 \section{Preprocessing}
 
-Preprocessing consists of three major steps: cleaning, basket transformation, 
-and time series construction.
+Before conducting association rule mining and time series forecasting, the raw dataset 
+undergoes several essential preprocessing steps. These operations ensure that the resulting 
+analyses are based on clean, consistent, and meaningful records.
 
 \subsection{Data Cleaning}
 
-Invalid rows were removed based on:
+The dataset contains irregularities that must be addressed. The following cleaning steps 
+were applied:
+
 \begin{itemize}
-	\item missing \textbf{Description},
-	\item missing \textbf{CustomerID},
-	\item nonpositive \textbf{Quantity} or \textbf{UnitPrice}.
+	\item Rows with missing \textbf{Description} were removed,
+	\item Rows with missing \textbf{CustomerID} were discarded to avoid grouping ambiguity,
+	\item Transactions with nonpositive \textbf{Quantity} or \textbf{UnitPrice} were excluded,
+	\item A new monetary value field was computed:
+	\[
+	\text{TotalAmount} = \text{Quantity} \times \text{UnitPrice}.
+	\]
 \end{itemize}
 
-The cleaned dataset ensures meaningful transactions and valid revenue values.
+These steps ensure that only valid and interpretable transactions are retained for further analysis.
 
 \subsection{Basket Matrix Construction}
 
-A binary matrix \( B \) was created:
+To prepare the dataset for association rule mining, a binary basket matrix was constructed. 
+Each row corresponds to an invoice, and each column represents a product. The value is defined as:
+
 \[
 B_{ij} =
 \begin{cases}
@@ -25,14 +34,17 @@ B_{ij} =
 \end{cases}
 \]
 
-To maintain computational feasibility in the manual Apriori implementation, 
-only the top 50 most frequent products were retained.
+To maintain computational tractability for the manual Apriori implementation, only the 
+top 50 most frequently purchased items were retained. This reduction preserves the most 
+informative co-occurrence patterns while avoiding excessive dimensionality.
 
-\subsection{Daily Revenue Series}
+\subsection{Daily Revenue Time Series}
 
-Revenue for each day was defined as:
+For forecasting purposes, total daily revenue was computed by aggregating monetary amounts per day:
+
 \[
-R(t) = \sum_{i \in \text{transactions on } t} \text{TotalAmount}_i.
+R(t) = \sum_{i \in \text{day } t} \text{TotalAmount}_i.
 \]
 
-This series forms the basis for SES forecasting.
+This daily revenue series forms the foundation for the subsequent trend analysis and the 
+manually implemented SES forecasting model.

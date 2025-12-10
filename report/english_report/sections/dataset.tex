@@ -1,22 +1,22 @@
 \section{Dataset Description}
 
-The dataset contains retail transactions, where each row represents a purchased item 
-within an invoice. The primary attributes include:
+The dataset used in this project consists of detailed invoice-level transaction records 
+from a UK-based online retail store. Each row in the dataset corresponds to a single 
+purchased item within an invoice, providing a granular view of purchasing behavior 
+across thousands of customers and products.
+
+The primary attributes include:
 
 \begin{itemize}
-	\item \textbf{InvoiceNo:} Unique invoice identifier,
-	\item \textbf{Description:} Product name,
-	\item \textbf{Quantity:} Number of purchased units,
-	\item \textbf{UnitPrice:} Price per unit,
-	\item \textbf{InvoiceDate:} Timestamp,
-	\item \textbf{CustomerID:} Customer identifier,
-	\item \textbf{Country:} Country of sale.
+	\item \textbf{InvoiceNo}: Unique transaction identifier,
+	\item \textbf{Description}: Product name,
+	\item \textbf{Quantity}: Number of units purchased,
+	\item \textbf{UnitPrice}: Price per individual item,
+	\item \textbf{InvoiceDate}: Timestamp of transaction,
+	\item \textbf{CustomerID}: Unique customer code,
+	\item \textbf{Country}: Country from which the purchase was made.
 \end{itemize}
 
-An additional attribute \textbf{TotalAmount} is computed:
-\[
-\text{TotalAmount} = \text{Quantity} \times \text{UnitPrice}.
-\]
-
-This processed dataset is then used for both association rule mining 
-(transaction-level analysis) and revenue forecasting (time series aggregation).
+This dataset is widely recognized for research in market basket analysis and demand forecasting. 
+Its structure—consisting of rich transaction-level detail, temporal coverage of one full year, 
+and a diverse set of products—makes it highly suitable for the methods applied in this report.

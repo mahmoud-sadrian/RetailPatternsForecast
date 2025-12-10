@@ -1,43 +1,79 @@
 \section{Association Rule Mining (Manual Implementation)}
 
-\subsection{Support, Confidence, and Lift}
+This section presents a detailed analysis of product co-occurrence patterns using manually 
+implemented association rule mining. All components of the Apriori procedure—including 
+support calculation, confidence, lift, and frequent itemset generation—were implemented 
+without external libraries. The analysis focuses on 1-item and 2-item itemsets, which align 
+well with the structure of the dataset, given the relatively small basket sizes observed.
 
-For itemset \( X \):
-\[
-\text{support}(X)
-= \frac{\text{transactions containing } X}{N}.
-\]
-
-For rule \( X \rightarrow Y \):
-\[
-\text{confidence}(X \rightarrow Y)
-= \frac{\text{support}(X \cup Y)}{\text{support}(X)}.
-\]
-
-\[
-\text{lift}(X \rightarrow Y)
-= \frac{\text{confidence}(X \rightarrow Y)}{\text{support}(Y)}.
-\]
-
-\subsection{Frequent Itemsets}
-
-Only 1-item and 2-item itemsets were computed manually using NumPy Boolean operations 
-for efficiency. The top frequent itemsets display strong co-occurrence patterns 
-consistent with high-volume retail items.
-
-\subsection{Extracted Rules}
+% ---------------- Basket Size Distribution ----------------
+\subsection{Basket Size Distribution}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{rules_scatter}
-	\caption{Support vs. confidence of all rules, colored by lift.}
+	\includegraphics[width=0.85\textwidth]{basket_size_distribution}
+	\caption{Distribution of the number of products per invoice.}
 \end{figure}
 
-Example rules include:
+The basket size distribution reveals that most invoices contain only one or two items, with 
+frequency decreasing rapidly as basket size increases. This exponential decay pattern is 
+typical in retail datasets, where customers tend to purchase only a few small, inexpensive 
+items per transaction.
+
+Only a very small fraction of invoices contain more than ten products, and baskets larger than 
+fifteen items are extremely rare. This supports the methodological choice of restricting 
+frequent itemset mining to 1-item and 2-item combinations, as higher-order itemsets would 
+lack sufficient support and contribute little to the analysis.
+
+% ---------------- Top 15 Frequent Items ----------------
+\subsection{Most Frequently Purchased Items}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{top15_items}
+	\caption{Top 15 most frequently purchased products.}
+\end{figure}
+
+The most frequently purchased items are predominantly low-cost decorative or gift products 
+such as candle holders, cake stands, lunch bags, and bunting accessories. The item 
+\textit{WHITE HANGING HEART T-LIGHT HOLDER} stands out significantly, appearing in nearly 2{,}000 
+invoices.
+
+This high concentration of sales among a small set of items reflects a long-tail distribution, 
+where a handful of products contribute disproportionately to overall transactions. As a 
+consequence, association rules tend to form around these popular items rather than the more 
+sparsely purchased products.
+
+% ---------------- Support vs Confidence (Manual Rules) ----------------
+\subsection{Support--Confidence--Lift Analysis}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.85\textwidth]{rules_scatter}
+	\caption{Support vs.\ confidence for manually generated rules, colored by lift.}
+\end{figure}
+
+The scatter plot illustrates the distribution of association rules by their support and 
+confidence values, with lift represented through a color gradient. Several key patterns 
+emerge from this visualization:
 
 \begin{itemize}
-	\item \{A\} $\rightarrow$ \{B\} with high confidence,
-	\item \{C\} $\rightarrow$ \{D\} with moderate lift.
+	\item \textbf{Support values} range from approximately 0.02 to 0.04, indicating that the 
+	rules are based on sufficiently frequent item co-occurrences.
+	
+	\item \textbf{Confidence values} vary between 0.30 and 0.68, demonstrating that several 
+	rules provide moderately strong predictive power.
+	
+	\item \textbf{Lift values} span from roughly 3 to above 10. A lift greater than 3 already 
+	signals strong positive association, while lift values exceeding 7--10 suggest highly 
+	non-random co-purchasing behavior.
+	
+	\item Multiple clusters are visible in the support--confidence plane, indicating that 
+	different item pairs form distinctive behavioral patterns rather than a single uniform 
+	trend.
 \end{itemize}
 
-These rules reveal meaningful relationships between frequently co-purchased items.
+Overall, the plot confirms that the manually implemented rule mining procedure successfully 
+captured meaningful relationships in the dataset. The presence of rules with both high 
+confidence and high lift highlights particularly strong purchasing associations worthy of 
+further exploration in retail analytics contexts.
