@@ -6,5 +6,6 @@
 *.log
 *.aux
 *.gz
+*.synctex
 
 *.xlsx
